@@ -1,9 +1,10 @@
 import { i18n } from './i18n'
 import { sdk } from './sdk'
+import { uiPort } from './utils'
 
 export const setInterfaces = sdk.setupInterfaces(async ({ effects }) => {
   const multi = sdk.MultiHost.of(effects, 'web')
-  const origin = await multi.bindPort(11235, {
+  const origin = await multi.bindPort(uiPort, {
     protocol: 'http',
     preferredExternalPort: 80,
   })
@@ -18,7 +19,9 @@ export const setInterfaces = sdk.setupInterfaces(async ({ effects }) => {
     masked: false,
     schemeOverride: null,
     username: null,
-    path: '/playground',
+    // Trailing slash required: uvicorn's redirect for the bare path rebuilds it
+    // from the plaintext request it receives and hands the browser an http:// URL.
+    path: '/playground/',
     query: {},
   })
 
