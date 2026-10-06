@@ -1,7 +1,7 @@
 import { IMPOSSIBLE, VersionInfo } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '0.9.4:0',
+  version: '0.9.4:1',
   releaseNotes: {
     en_US: `Updated Crawl4AI to 0.9.4.
 
@@ -16,7 +16,9 @@ export const current = VersionInfo.of({
 - A crawl now fails with a timeout after 5 minutes by default (upstream's new limit).
 - Browser contexts are recycled after 200 pages for steadier performance under load.
 
-[Full changelog](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)`,
+[Full changelog](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)
+
+- Set API Token asks for confirmation before it replaces an existing token.`,
     es_ES: `Crawl4AI actualizado a 0.9.4.
 
 **Seguridad**
@@ -30,7 +32,9 @@ export const current = VersionInfo.of({
 - Un rastreo ahora falla por tiempo de espera después de 5 minutos de forma predeterminada (nuevo límite de upstream).
 - Los contextos del navegador se reciclan tras 200 páginas para un rendimiento más estable bajo carga.
 
-[Registro de cambios completo](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)`,
+[Registro de cambios completo](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)
+
+- Establecer Token de API pide confirmación antes de reemplazar un token existente.`,
     de_DE: `Crawl4AI auf 0.9.4 aktualisiert.
 
 **Sicherheit**
@@ -44,7 +48,9 @@ export const current = VersionInfo.of({
 - Ein Crawl schlägt jetzt standardmäßig nach 5 Minuten mit einer Zeitüberschreitung fehl (neues Limit von Upstream).
 - Browser-Kontexte werden nach 200 Seiten recycelt, für stabilere Leistung unter Last.
 
-[Vollständiges Changelog](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)`,
+[Vollständiges Changelog](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)
+
+- API-Token festlegen fragt vor dem Ersetzen eines vorhandenen Tokens nach einer Bestätigung.`,
     pl_PL: `Crawl4AI zaktualizowany do 0.9.4.
 
 **Bezpieczeństwo**
@@ -58,7 +64,9 @@ export const current = VersionInfo.of({
 - Indeksowanie kończy się teraz domyślnie przekroczeniem limitu czasu po 5 minutach (nowy limit upstream).
 - Konteksty przeglądarki są odtwarzane po 200 stronach, co daje stabilniejszą wydajność pod obciążeniem.
 
-[Pełny dziennik zmian](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)`,
+[Pełny dziennik zmian](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)
+
+- Ustaw token API prosi o potwierdzenie przed zastąpieniem istniejącego tokenu.`,
     fr_FR: `Crawl4AI mis à jour vers 0.9.4.
 
 **Sécurité**
@@ -72,7 +80,9 @@ export const current = VersionInfo.of({
 - Un crawl échoue désormais par dépassement de délai après 5 minutes par défaut (nouvelle limite d'amont).
 - Les contextes de navigateur sont recyclés après 200 pages pour des performances plus stables sous charge.
 
-[Journal des modifications complet](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)`,
+[Journal des modifications complet](https://github.com/unclecode/crawl4ai/blob/v0.9.4/CHANGELOG.md)
+
+- Définir le token API demande une confirmation avant de remplacer un token existant.`,
   },
   migrations: {
     up: async ({ effects }) => {},

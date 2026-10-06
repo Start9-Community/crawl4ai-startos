@@ -103,8 +103,9 @@ soon as you have its id, and do not treat the server as storage.
 ### Actions
 
 - **Set API Token** — generates a new token and shows it to you once. Run it
-  from the **Actions** tab whenever you want to rotate it; every client using
-  the old token stops working immediately.
+  from the **Actions** tab whenever you want to rotate it. Once a token exists,
+  StartOS asks you to confirm first, because every client using the old token
+  stops working immediately.
 
 ## Limitations
 

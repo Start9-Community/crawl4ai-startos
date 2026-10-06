@@ -12,6 +12,7 @@ const dict = {
   'API Token': 6,
   'Use this token as `Authorization: Bearer <token>` on every API request. The service restarts automatically to pick up the new token.': 7,
   Token: 8,
+  'Replaces the current API token, and restarts the service if it is running. Every client using the old token stops working, and the new one is shown only once.': 11,
   // init/watchApiToken.ts
   'Set the API token so the server binds a non-loopback interface and StartOS can reach it.': 9,
   // interfaces.ts

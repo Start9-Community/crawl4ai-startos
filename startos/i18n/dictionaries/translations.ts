@@ -13,6 +13,7 @@ export default {
     8: 'Token',
     9: 'Establece el token de API para que el servidor enlace una interfaz no local y StartOS pueda alcanzarlo.',
     10: 'Playground, API, monitor y endpoints MCP en un único puerto HTTP.',
+    11: 'Reemplaza el token de API actual y reinicia el servicio si está en ejecución. Todos los clientes que usen el token anterior dejarán de funcionar, y el nuevo solo se muestra una vez.',
   },
   de_DE: {
     0: 'Starte Crawl4AI',
@@ -26,6 +27,7 @@ export default {
     8: 'Token',
     9: 'Leg den API-Token fest, damit der Server eine Nicht-Loopback-Schnittstelle bindet und StartOS ihn erreichen kann.',
     10: 'Playground, API, Monitor und MCP-Endpunkte auf einem einzigen HTTP-Port.',
+    11: 'Ersetzt das aktuelle API-Token und startet den Dienst neu, falls er läuft. Jeder Client, der das alte Token verwendet, funktioniert nicht mehr, und das neue wird nur einmal angezeigt.',
   },
   pl_PL: {
     0: 'Uruchamianie Crawl4AI',
@@ -39,6 +41,7 @@ export default {
     8: 'Token',
     9: 'Ustaw token API, aby serwer powiązał z interfejsem innym niż loopback i StartOS mógł go osiągnąć.',
     10: 'Playground, API, monitor i endpointy MCP na jednym porcie HTTP.',
+    11: 'Zastępuje bieżący token API i uruchamia usługę ponownie, jeśli działa. Każdy klient używający starego tokenu przestanie działać, a nowy zostanie pokazany tylko raz.',
   },
   fr_FR: {
     0: 'Démarrage de Crawl4AI',
@@ -52,5 +55,6 @@ export default {
     8: 'Token',
     9: "Définissez le token API pour que le serveur se lie à une interface non-loopback afin que StartOS puisse l'atteindre.",
     10: 'Playground, API, moniteur et endpoints MCP sur un seul port HTTP.',
+    11: "Remplace le token API actuel et redémarre le service s'il est en cours d'exécution. Tout client utilisant l'ancien token cesse de fonctionner, et le nouveau n'est affiché qu'une seule fois.",
   },
 } satisfies Record<string, LangDict>
