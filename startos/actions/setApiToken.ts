@@ -5,12 +5,16 @@ import { sdk } from '../sdk'
 
 export const setApiToken = sdk.Action.withoutInput(
   'set-api-token',
-  async () => ({
+  async ({ effects }) => ({
     name: i18n('Set API Token'),
     description: i18n(
       'Generate or rotate the Crawl4AI API token. Required for the server to bind a non-loopback interface so StartOS can reach it.',
     ),
-    warning: null,
+    warning: (await storeJson.read((s) => s.apiToken).const(effects))
+      ? i18n(
+          'Replaces the current API token, and restarts the service if it is running. Every client using the old token stops working, and the new one is shown only once.',
+        )
+      : null,
     allowedStatuses: 'any',
     group: null,
     visibility: 'enabled',

@@ -165,6 +165,9 @@ One action, used once for setup and thereafter for rotation.
 - **Cost** — a container restart, a few seconds.
 - **Repeat safety** — safe to repeat, but not idempotent: every run mints a new
   token and invalidates the old one. Every client has to be updated.
+- **Confirmation** — when a token is already stored, StartOS asks the user to
+  confirm before the action replaces it. The first run, with no token stored,
+  runs without asking.
 - **What happens next** — the daemon restarts on the new token and the web
   interface health check goes green again.
 - **Outputs** — the token itself, masked and copyable. It is shown once per run;

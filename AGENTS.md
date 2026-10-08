@@ -18,7 +18,10 @@ Freshly scaffolded? Work the
 guide page, not a file in this repo — read it, don't copy it in.
 
 Keep `README.md` (technical reference for an AI support or administering agent) and
-`instructions.md` (end-user docs) in sync with your changes.
+`instructions.md` (end-user docs) in sync with your changes. This file restates neither:
+whoever changes the package has both, so it carries only what they don't — repo mechanics,
+a change that looks right and is not, where the next thing gets added, a naming trap, a
+build or test invocation particular to this repo.
 
 **Fix a defect you spot rather than reporting it** — you have the package open and the
 context to be sure. File **a GitHub issue on this repo** only when the call isn't yours to
@@ -31,6 +34,5 @@ verified, tried, and decided belongs in the commit message and the PR body.
 
 ## This repo
 
-- **Never mount anything at `/home/appuser/.cache`.** The Playwright browsers are baked into the image there; a volume subpath mounted over it shadows them and gunicorn's workers die with `BrowserType.launch: Executable doesn't exist`. If a future image stops baking them, run `playwright install chromium` from a oneshot instead of masking the path.
-- **The mounted `outputs` subpath arrives root-owned on every start**, and the server writes it as `appuser`. That is what the `fix-permissions` oneshot exists for — don't fold it into the daemon.
-- **`CRAWL4AI_API_TOKEN` decides the bind address.** Upstream's `entrypoint.sh` binds gunicorn to loopback when the variable is empty, so the token is not merely authentication — without it StartOS cannot reach the service at all.
+- **Never mount anything at `/home/appuser/.cache`.** The image bakes the Playwright browsers there, and a mount shadows them so no worker can launch Chromium.
+- **Keep the `fix-permissions` oneshot separate from the daemon.** The `outputs` subpath arrives root-owned on every start, and the server runs as `appuser`.
