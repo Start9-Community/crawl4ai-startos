@@ -33,8 +33,6 @@ changes.
 ## Applying the bump
 
 - Bump `dockerTag` in `startos/manifest/index.ts`.
-- Set `version` in `startos/versions/current.ts` to `<new version>:0` and
-  rewrite `releaseNotes` in every locale.
 - Re-read `deploy/docker/entrypoint.sh`, `supervisord.conf`, and `config.yml`
   from upstream at the new tag, and confirm what this package depends on:
   - the entrypoint still resolves the gunicorn bind from `CRAWL4AI_API_TOKEN`,
