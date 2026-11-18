@@ -12,7 +12,7 @@
 Crawl4AI is an LLM-oriented web crawler and scraper. Its Docker server exposes a
 REST API for crawling, screenshots, PDFs, and Markdown extraction, alongside a
 playground, a live monitor, and Model Context Protocol endpoints. This package
-runs that image, with a temporary CA-store layer, and turns its API token into a StartOS action,
+runs that image with certificate and runtime security updates, and turns its API token into a StartOS action,
 because the token is what decides whether the server is reachable at all.
 
 - **Upstream repo:** <https://github.com/unclecode/crawl4ai>
@@ -40,8 +40,15 @@ because the token is what decides whether the server is reachable at all.
 ## Image and Container Runtime
 
 One upstream image with a permissions oneshot in front of it. The root `Dockerfile`
-upgrades its system CA bundle and certifi; that layer comes out once upstream ships an
-image built on a fixed store.
+upgrades its system CA bundle, certifi and Pillow. It replaces the Python Playwright
+driver's private Node binary with a patched release from the same Node 24 line;
+updating a system Node installation would not affect that driver. The Playwright
+package and baked browser revisions stay unchanged. Preserve these updates until
+the effective upstream runtimes include the corresponding fixes.
+
+`make test-runtime TEST_IMAGE=<built-image> TEST_PLATFORM=<platform>` exercises
+Pillow, the actual driver Node and a local Crawl4AI crawl with screenshots and PDF
+output. It runs without external network access as the image's unprivileged user.
 
 | Property      | Value                          |
 | ------------- | ------------------------------ |

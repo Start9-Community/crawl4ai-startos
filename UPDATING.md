@@ -22,8 +22,8 @@ docker buildx imagetools inspect unclecode/crawl4ai:<new version> \
   --format '{{range .Manifest.Manifests}}{{.Platform.OS}}/{{.Platform.Architecture}} {{end}}'
 ```
 
-Both `linux/amd64` and `linux/arm64` must be present. The current pin lives in
-`startos/manifest/index.ts` at `images.crawl4ai.source.dockerTag`.
+Both `linux/amd64` and `linux/arm64` must be present. The current upstream pin lives
+in `Dockerfile`.
 
 Read the upstream [CHANGELOG](https://github.com/unclecode/crawl4ai/blob/main/CHANGELOG.md)
 and [migration guide](https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md)
@@ -32,7 +32,11 @@ changes.
 
 ## Applying the bump
 
-- Bump `dockerTag` in `startos/manifest/index.ts`.
+- Bump the Crawl4AI base tag in `Dockerfile`.
+- Preserve the Dockerfile's Pillow security floor and patched private Playwright
+  Node until the upstream image includes those fixes. Keep Playwright and its
+  installed browser revisions compatible. Run `make test-runtime` against each
+  built architecture; see the image/runtime section of `README.md`.
 - Re-read `deploy/docker/entrypoint.sh`, `supervisord.conf`, and `config.yml`
   from upstream at the new tag, and confirm what this package depends on:
   - the entrypoint still resolves the gunicorn bind from `CRAWL4AI_API_TOKEN`,
