@@ -40,15 +40,12 @@ because the token is what decides whether the server is reachable at all.
 ## Image and Container Runtime
 
 One upstream image with a permissions oneshot in front of it. The root `Dockerfile`
-upgrades its system CA bundle, certifi and Pillow. It replaces the Python Playwright
-driver's private Node binary with a patched release from the same Node 24 line;
-updating a system Node installation would not affect that driver. The Playwright
-package and baked browser revisions stay unchanged. Preserve these updates until
-the effective upstream runtimes include the corresponding fixes.
-
-`make test-runtime TEST_IMAGE=<built-image> TEST_PLATFORM=<platform>` exercises
-Pillow, the actual driver Node and a local Crawl4AI crawl with screenshots and PDF
-output. It runs without external network access as the image's unprivileged user.
+upgrades its system CA bundle, certifi and Pillow, and replaces the private Node
+binary bundled with each of the Python Playwright and Patchright drivers with a
+patched release of the same major. Build guards reject a major change or a
+replacement that is not newer than the bundled runtime. The upstream and Node
+images are digest-pinned; Python driver packages and baked browser revisions stay
+unchanged.
 
 | Property      | Value                          |
 | ------------- | ------------------------------ |

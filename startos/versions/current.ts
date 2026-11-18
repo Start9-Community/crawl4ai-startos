@@ -4,15 +4,15 @@ export const current = VersionInfo.of({
   version: '0.9.4:3',
   releaseNotes: {
     en_US:
-      'Updates Pillow and the browser driver’s Node.js runtime to fix image-processing and Brotli security flaws. Crawl4AI and its browser version are unchanged.',
+      'Fixes security vulnerabilities in image processing and in how the bundled browser drivers handle compressed data, TLS and HTTP.',
     es_ES:
-      'Actualiza Pillow y el entorno Node.js del controlador del navegador para corregir fallos de seguridad en el procesamiento de imágenes y Brotli. Crawl4AI y la versión del navegador no cambian.',
+      'Corrige vulnerabilidades de seguridad en el procesamiento de imágenes y en cómo los controladores de navegador incluidos manejan datos comprimidos, TLS y HTTP.',
     de_DE:
-      'Aktualisiert Pillow und die Node.js-Laufzeit des Browsertreibers, um Sicherheitslücken in der Bildverarbeitung und Brotli zu beheben. Crawl4AI und die Browserversion bleiben unverändert.',
+      'Behebt Sicherheitslücken in der Bildverarbeitung und darin, wie die mitgelieferten Browsertreiber komprimierte Daten, TLS und HTTP verarbeiten.',
     pl_PL:
-      'Aktualizuje Pillow i środowisko Node.js sterownika przeglądarki, naprawiając luki bezpieczeństwa w przetwarzaniu obrazów i Brotli. Crawl4AI i wersja przeglądarki pozostają bez zmian.',
+      'Naprawia luki bezpieczeństwa w przetwarzaniu obrazów oraz w sposobie, w jaki dołączone sterowniki przeglądarki obsługują skompresowane dane, TLS i HTTP.',
     fr_FR:
-      'Met à jour Pillow et le moteur Node.js du pilote du navigateur pour corriger des failles de traitement d’images et de Brotli. Crawl4AI et la version du navigateur restent inchangés.',
+      'Corrige des failles de sécurité dans le traitement d’images et dans la façon dont les pilotes de navigateur intégrés traitent les données compressées, TLS et HTTP.',
   },
   migrations: {
     up: async ({ effects }) => {},

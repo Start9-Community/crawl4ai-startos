@@ -20,8 +20,7 @@ One web address that serves all of it:
   this server as a tool.
 
 A headless browser is bundled, so there is nothing to download and pages that
-need JavaScript render properly. The package also maintains security fixes for its
-browser driver and image-processing library.
+need JavaScript render properly.
 
 ## Getting set up
 
