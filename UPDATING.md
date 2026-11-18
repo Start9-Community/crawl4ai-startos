@@ -22,8 +22,8 @@ docker buildx imagetools inspect unclecode/crawl4ai:<new version> \
   --format '{{range .Manifest.Manifests}}{{.Platform.OS}}/{{.Platform.Architecture}} {{end}}'
 ```
 
-Both `linux/amd64` and `linux/arm64` must be present. The current pin lives in
-`startos/manifest/index.ts` at `images.crawl4ai.source.dockerTag`.
+Both `linux/amd64` and `linux/arm64` must be present. The current upstream pin lives
+in `Dockerfile`.
 
 Read the upstream [CHANGELOG](https://github.com/unclecode/crawl4ai/blob/main/CHANGELOG.md)
 and [migration guide](https://github.com/unclecode/crawl4ai/blob/main/deploy/docker/MIGRATION.md)
@@ -32,7 +32,26 @@ changes.
 
 ## Applying the bump
 
-- Bump `dockerTag` in `startos/manifest/index.ts`.
+- Resolve the selected Crawl4AI tag's multi-architecture index digest and update
+  both in `Dockerfile`. The digest prevents a rebuilt tag from silently changing
+  the inspected runtimes. Confirm it still supplies amd64 and arm64.
+- Retire each Dockerfile override once the selected image supplies the fix.
+  - Keep the Pillow floor while the image's Pillow is older than 13. Its `<14`
+    cap would downgrade a newer Pillow, so remove the override before selecting
+    such an image.
+
+    ```sh
+    docker run --rm --entrypoint pip unclecode/crawl4ai:<new version> show pillow
+    ```
+
+  - The `driver-node` stage replaces the private Node in Playwright and Patchright.
+    Each driver's build guard requires the same major and a strictly newer
+    replacement. Remove a driver from the loop once its bundled Node includes the
+    security fixes (24.22.3, 26.13.1 or a newer patched release of its line).
+    Otherwise select the latest patched release of that major and update the
+    Node stage's tag and multi-architecture digest together. If remaining drivers
+    need different majors, a single replacement stage cannot cover both. Remove
+    the stage and its copy step once neither driver needs an override.
 - Re-read `deploy/docker/entrypoint.sh`, `supervisord.conf`, and `config.yml`
   from upstream at the new tag, and confirm what this package depends on:
   - the entrypoint still resolves the gunicorn bind from `CRAWL4AI_API_TOKEN`,
